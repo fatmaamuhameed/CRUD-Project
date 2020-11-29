@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+
+    <div class="container py-5">
+
+      
+
+        <div class="form-group">
+            <label for="productNameInput">productName :</label>
+            <input class="form-control" type="text" id="productNameInput">
+        </div>
+
+
+        <div class="form-group">
+            <label for="productPriceInput">productPrice :</label>
+            <input class="form-control" type="number" id="productPriceInput">
+        </div>
+
+
+        <div class="form-group">
+            <label for="productCategoryInput">productCategory :</label>
+            <input class="form-control" type="text" id="productCategoryInput">
+        </div>
+
+
+        <div class="form-group">
+            <label for="productDescInput">productDescription :</label>
+            <textarea class="form-control" type="text" id="productDescInput"></textarea>
+        </div>
+
+
+        <button onclick="addProduct()" class="btn btn-outline-success">Add Product</button>
+
+    </div>
+
+    <div class="container py-5">
+
+        <table class="table">
+            <thead>
+                <th>index</th>
+                <th>ProductName</th>
+                <th>ProductPrice</th>
+                <th>ProductCategory</th>
+                <th>ProductDesc</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </thead>
+
+            <tbody id="InsideTable" >
+    
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
