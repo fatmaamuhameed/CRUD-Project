@@ -10,7 +10,7 @@ if(localStorage.getItem("product") == null){
 }
 else{
     listOfProduct = JSON.parse(localStorage.getItem("product"));
-    displayProduct();
+    displayProduct(listOfProduct);
 }
 
 function addProduct(){
@@ -25,7 +25,7 @@ function addProduct(){
     // json.strinify b7wlha mn array of obj le string 3lshan localstorage bta5od value 3la enha str
     localStorage.setItem("product",JSON.stringify(listOfProduct));
     clearForm();
-    displayProduct()
+    displayProduct(listOfProduct)
     //console.log(listOfProduct);
 }
 
@@ -37,19 +37,39 @@ function clearForm(){
     productDesc.value = ""
 }
 
-function displayProduct(){
+function displayProduct(products){
    var rowOfProduct = "";
 
-   for(var i=0; i<listOfProduct.length ; i++){
+   for(var i=0; i<products.length ; i++){
         rowOfProduct+=`<tr>
        <td>`+i+`</td>
-       <td>`+listOfProduct[i].name+`</td>
-       <td>`+listOfProduct[i].price+`</td>
-       <td>`+listOfProduct[i].category+`</td>
-       <td>`+listOfProduct[i].descreption+`</td>
-       <td><button class="btn btn-outline-warning">Update</button></td>
-       <td><button class="btn btn-outline-danger">Delete</button></td> </tr>`
+       <td>`+products[i].name+`</td>
+       <td>`+products[i].price+`</td>
+       <td>`+products[i].category+`</td>
+       <td>`+products[i].descreption+`</td>
+       <td><button onclick="deleteProduct(${i})" class="btn btn-outline-danger">Delete</button></td> </tr>`
    }
 
    document.getElementById("InsideTable").innerHTML = rowOfProduct ; 
 }
+
+function searchProduct(searchTerm){
+    var searchResults = []
+ 
+    for(var i=0; i<listOfProduct.length ; i++){
+        if(listOfProduct[i].name.toLowerCase().includes(searchTerm.toLowerCase())==true || listOfProduct[i].category.toLowerCase().includes(searchTerm.toLowerCase())==true 
+        || listOfProduct[i].price.toLowerCase().includes(searchTerm.toLowerCase())==true || listOfProduct[i].descreption.toLowerCase().includes(searchTerm.toLowerCase())==true  ){
+
+            searchResults.push(listOfProduct[i]);
+        }
+      
+    }
+    displayProduct(searchResults);
+ }
+
+ function deleteProduct(indexProduct){
+    listOfProduct.splice(indexProduct,1);
+    localStorage.setItem("product",JSON.stringify(listOfProduct));
+    displayProduct(listOfProduct);
+ }
+
